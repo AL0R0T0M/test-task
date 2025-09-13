@@ -7,6 +7,7 @@ class WalletAdmin(admin.ModelAdmin):
     list_display = ('label', 'id', 'balance')
     readonly_fields = ('id',)
 
+
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
     list_display = ('wallet', 'operation_type', 'amount', 'timestamp')

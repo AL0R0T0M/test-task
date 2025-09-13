@@ -1,10 +1,12 @@
 import uuid
 from django.db import models
 
+
 class Wallet(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     label = models.CharField(max_length=100)
-    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    balance = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0.00)
 
     def __str__(self):
         return self.label
@@ -21,7 +23,8 @@ class Transaction(models.Model):
         ('WITHDRAW', 'Withdraw'),
     ]
 
-    wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE, related_name='transactions')
+    wallet = models.ForeignKey(
+        Wallet, on_delete=models.CASCADE, related_name='transactions')
     operation_type = models.CharField(max_length=8, choices=OPERATION_CHOICES)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)

@@ -9,7 +9,8 @@ class WalletSerializer(serializers.ModelSerializer):
 
 
 class OperationSerializer(serializers.Serializer):
-    operation_type = serializers.ChoiceField(choices=Transaction.OPERATION_CHOICES)
+    operation_type = serializers.ChoiceField(
+        choices=Transaction.OPERATION_CHOICES)
     amount = serializers.DecimalField(max_digits=10, decimal_places=2)
 
     def validate_amount(self, value):
